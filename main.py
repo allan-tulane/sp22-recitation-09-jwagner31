@@ -55,13 +55,25 @@ def test_shortest_shortest_path():
     
     
 def bfs_path(graph, source):
-    """
-    Returns:
-      a dict where each key is a vertex and the value is the parent of 
-      that vertex in the shortest path tree.
-    """
-    ###TODO
-    pass
+  """
+  Returns:
+    a dict where each key is a vertex and the value is the parent of 
+    that vertex in the shortest path tree.
+  """
+  frontier = deque()
+  paths = {}
+  for node in graph:
+    if node != source:
+      paths[node] = None
+  frontier.append(source)
+  while frontier:
+    currNode = frontier.popleft()
+    for neighbor in graph[currNode]:
+      #Add all unvisited neighbors to frontier
+      if paths[neighbor] == None: 
+        frontier.append(neighbor)
+        paths[neighbor] = currNode
+  return paths
 
 def get_sample_graph():
      return {'s': {'a', 'b'},
