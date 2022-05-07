@@ -92,13 +92,17 @@ def test_bfs_path():
     assert parents['d'] == 'c'
     
 def get_path(parents, destination):
-    """
-    Returns:
-      The shortest path from the source node to this destination node 
-      (excluding the destination node itself). See test_get_path for an example.
-    """
-    ###TODO
-    pass
+  """
+  Returns:
+    The shortest path from the source node to this destination node 
+    (excluding the destination node itself). See test_get_path for an example.
+  """
+  result = ""
+  while destination in parents:
+    result = parents[destination] + result
+    newdestination = parents[destination]
+    destination = newdestination
+  return result
 
 def test_get_path():
     graph = get_sample_graph()
